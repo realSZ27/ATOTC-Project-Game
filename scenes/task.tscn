@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://c8uhgqf3m6hfe"]
+
+[ext_resource type="Script" uid="uid://ypg6td8mtkew" path="res://scenes/task.gd" id="1_3qeyo"]
+[ext_resource type="Texture2D" uid="uid://eyv7gc43cxu7" path="res://assets/earth/TX Props.png" id="2_qe5cv"]
+[ext_resource type="FontFile" uid="uid://bskrsyy7x76m3" path="res://assets/monogram.ttf" id="3_mpid7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nrbgo"]
+size = Vector2(22, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yx810"]
+atlas = ExtResource("2_qe5cv")
+region = Rect2(453, 118, 22, 37)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lxhym"]
+size = Vector2(62, 74)
+
+[node name="Task" type="StaticBody2D"]
+script = ExtResource("1_3qeyo")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_nrbgo")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_yx810")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_lxhym")
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_left = -42.0
+offset_top = -36.0
+offset_right = 42.0
+offset_bottom = -13.0
+theme_override_fonts/font = ExtResource("3_mpid7")
+text = "Task Completed"
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

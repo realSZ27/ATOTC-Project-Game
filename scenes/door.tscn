@@ -1,0 +1,70 @@
+[gd_scene load_steps=7 format=3 uid="uid://c8l2pn0apey0g"]
+
+[ext_resource type="Script" uid="uid://4xa1rjgnojw8" path="res://scenes/door.gd" id="1_83dcw"]
+[ext_resource type="Texture2D" uid="uid://bsmewj5dvg6hl" path="res://assets/TileSet v1.0.png" id="2_la1wf"]
+[ext_resource type="FontFile" uid="uid://bskrsyy7x76m3" path="res://assets/monogram.ttf" id="3_18pbm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q5w8r"]
+atlas = ExtResource("2_la1wf")
+region = Rect2(193, 65, 30, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t58dd"]
+size = Vector2(64, 63)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_83dcw"]
+size = Vector2(30, 30)
+
+[node name="Door" type="StaticBody2D"]
+script = ExtResource("1_83dcw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_q5w8r")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="Lights" type="Node2D" parent="."]
+
+[node name="Task" type="ColorRect" parent="Lights"]
+offset_left = 11.0
+offset_top = -12.0
+offset_right = 13.0
+offset_bottom = -10.0
+color = Color(1, 0, 0, 1)
+
+[node name="Task2" type="ColorRect" parent="Lights"]
+offset_left = 11.0
+offset_top = -8.0
+offset_right = 13.0
+offset_bottom = -6.0
+color = Color(1, 0, 0, 1)
+
+[node name="Task3" type="ColorRect" parent="Lights"]
+offset_left = 11.0
+offset_top = -4.0
+offset_right = 13.0
+offset_bottom = -2.0
+color = Color(1, 0, 0, 1)
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_left = -20.0
+offset_top = -27.0
+offset_right = 20.0
+offset_bottom = -4.0
+theme_override_fonts/font = ExtResource("3_18pbm")
+text = "60s"
+horizontal_alignment = 1
+
+[node name="Detection Area" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detection Area"]
+position = Vector2(1, 0.5)
+shape = SubResource("RectangleShape2D_t58dd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_83dcw")
+
+[connection signal="area_entered" from="Detection Area" to="." method="_on_detection_area_area_entered"]

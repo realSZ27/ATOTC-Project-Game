@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://uhxrcvi0k82q"]
+
+[ext_resource type="Script" uid="uid://fif7e40ouwkp" path="res://scenes/main_menu.gd" id="1_l6cm7"]
+[ext_resource type="FontFile" uid="uid://bskrsyy7x76m3" path="res://assets/monogram.ttf" id="2_ekxnf"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="Main Menu" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_l6cm7")
+
+[node name="CenterContainer" type="CenterContainer" parent="Main Menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="Main Menu/CenterContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ekxnf")
+theme_override_font_sizes/font_size = 180
+text = "Play"
+
+[connection signal="pressed" from="Main Menu/CenterContainer/Button" to="Main Menu" method="_on_button_pressed"]
